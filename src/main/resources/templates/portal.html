@@ -7,20 +7,22 @@
 <link th:href="@{bootstrap/css/bootstrap-theme.min.css}"
 	rel="stylesheet" />
 <meta charset="UTF-8" />
-<title>Title</title>
+<title>华山医院CRF系统</title>
 </head>
 <body>
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">欢迎进入华山医院CRF系统</h3>
 		</div>
-		<div class="panel-body">
+		<div class="panel-body" align="center">
 			<a href="a_basic.html" th:href="@{/a_basic}">
-				<button class="btn-primary">新增患者信息</button>
+				<button class="btn-lg btn-primary">新增患者</button>
 			</a>
 		</div>
-		<div class="panel-body">
-			<button class="btn-primary">复诊患者信息</button>
+		<div align="center" class="panel-body" >
+			<a href="search.html" th:href="@{/search}">
+				<button class="btn-lg btn-primary">复诊患者</button>
+			</a>
 		</div>
 	</div>
 	<script th:src="@{js/jquery.min.js}" type="text/javascript"></script>

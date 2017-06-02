@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+<meta charset="UTF-8" />
+<title>Title</title>
+</head>
+<body>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">患者查询</h3>
+		</div>
+
+		<form role="form" th:object="${named}" method="get">
+			<div align="center" class="panel-body">
+				<label class="control-label">输入患者姓名查询：</label>
+				<div class="input-group col-xs-6">
+					<input type="text" class="form-control" th:field="*{name}"></input>
+					<span class="input-group-btn"> <a href="search.html"
+						th:href="@{/search(name=*{name})}">
+							<button class="btn btn-primary" type="submit">查询</button>
+					</a>
+					</span>
+				</div>
+			</div>
+		</form>
+		<div align="center" class="panel-body">
+			<a href="portal_personal.html" th:href="@{/portal}">
+				<button type="button" class=" btn btn-default">返回</button>
+			</a>
+		</div>
+
+	</div>
+	<table class="table table-striped">
+		<tr>
+			<th>姓名</th>
+			<th>性别</th>
+			<th>患者编码</th>
+			<th>操作</th>
+		</tr>
+		<tr th:each="aBasic : ${aBasics}">
+			<td th:text="${aBasic.name}">姓名</td>
+			<td th:text="${aBasic.ismale}?'男':'女'">性别</td>
+			<td th:text="'CNSR3-' + ${aBasic.code1} + '-' + ${aBasic.code2}">患者编码</td>
+			<td><a href="a_basic.html"
+				th:href="@{/portal_personal(name=${aBasic.name},code1=${aBasic.code1},code2=${aBasic.code2})}">查看</a></td>
+		</tr>
+	</table>
+	<script th:src="@{js/jquery.min.js}" type="text/javascript"></script>
+	<script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+	<script th:inline="javascript">
+	var aBasics = [[${aBasics}]];
+    if (aBasics != null){
+    	if (aBasics.length == 0) alert("没有查询到该患者的信息");
+    	else alert("查询成功");
+    	}
+	</script>
+</body>
+</html>

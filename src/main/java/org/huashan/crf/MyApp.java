@@ -28,14 +28,14 @@ public class MyApp implements CommandLineRunner {
     @Override
     public void run(String... paramArrayOfString) throws Exception {
         // Clear Customer collection by removing all entities
-//        customerDao.deleteAll();
-//
-//        // save a couple of customers
-//        customerDao.save(new Customer("Alice", "Smith", null, 19));
-//        customerDao.save(new Customer("Alice", "Jones", null, 26));
-//        customerDao.save(new Customer("Bob", "Smith", new Address("Zlota", 22, "00-020", "Warszawa"), 30));
-//        customerDao.save(new Customer("Alice", "Brown", null, 80));
-//        customerDao.save(new Customer("Alice", "Smedley", null, 52));
+        customerDao.deleteAll();
+
+        // save a couple of customers
+        customerDao.save(new Customer("Alice", "Smith", null, 19));
+        customerDao.save(new Customer("Alice", "Jones", null, 26));
+        customerDao.save(new Customer("Bob", "Smith", new Address("Zlota", 22, "00-020", "Warszawa"), 30));
+        customerDao.save(new Customer("Alice", "Brown", null, 80));
+        customerDao.save(new Customer("Alice", "Smedley", null, 52));
 //
 //        // fetch all customers
 //        System.out.println("Customers found with findAll():");
@@ -45,13 +45,13 @@ public class MyApp implements CommandLineRunner {
 //        }
 //        System.out.println();
 //
-//        // fetch top 2 customers by last name
-//        System.out.println("Customers found with findTop2ByLastName('Smith'):");
-//        System.out.println("-------------------------------");
-//        for (Customer customer : customerDao.findTop2ByLastName("Smith")) {
-//            System.out.println(customer);
-//        }
-//        System.out.println();
+        // fetch top 2 customers by last name
+        System.out.println("Customers found with findTop2ByLastName('Smith'):");
+        System.out.println("-------------------------------");
+        for (Customer customer : customerDao.findTop2ByLastName("Smith")) {
+            System.out.println(customer);
+        }
+        System.out.println();
 //
 //        // fetch top 2 customers by first name
 //        System.out.println("Customers found with findTop2ByFirstName('Alice'):");
