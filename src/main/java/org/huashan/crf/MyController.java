@@ -33,6 +33,10 @@ public class MyController {
 	public String portal() {  
 		return "portal";  
 	}
+	@RequestMapping("/todo")
+	public String todo() {  
+		return "todo";  
+	}
 	@RequestMapping("/portal_personal")
 	public String portal_personal(
 			@RequestParam(value="name", required=false, defaultValue="") String name,
@@ -91,7 +95,7 @@ public class MyController {
 			return "Duplicated code: CNSR3-" + doc.getCode1() + "-" + doc.getCode2();
 		}
 //		model.addAttribute("aBasic", doc);
-		return "success";  
+		return "todo";  
 	}
 
 
