@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+<meta charset="UTF-8" />
+<title>Title</title>
+</head>
+<body>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">A．基本信息</h3>
+		</div>
+
+
+		<form role="form" action="#" th:action="@{/a_basic}"
+			th:object="${aBasic}" method="post">
+
+			<fieldset>
+				<legend>
+					<label th:text="*{name}"></label>
+				</legend>
+				<div class="form-group container">
+					<div class="row">
+						<label class="col-xs-3 control-label" for="name"  style="padding-right:0px">A1．姓名</label>
+						<div class="col-xs-4" style="padding-left:0px;padding-right:0px">
+							<input type="text" class="form-control" id="name"
+								placeholder="请输入姓名" th:field="*{name}"></input>
+						</div>
+					</div>
+				</div>
+				<div class="form-group container">
+					<div class="row">
+						<label class="col-xs-3 control-label"  style="padding-right:0px">A2．性别</label>
+						<div class="radio">
+							<label class="col-xs-2 control-label"> <input
+								type="radio" name="ismale" id="optionsRadios1" value="true"
+								th:field="*{ismale}"> 男</input>
+							</label>
+						</div>
+						<div class="radio">
+							<label class="col-xs-2 control-label"> <input
+								type="radio" name="ismale" id="optionsRadios2" value="false"
+								th:field="*{ismale}"> 女</input>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group container">
+					<div class="row">
+						<label class="col-xs-3 control-label" style="padding-right:0px">A4．患者编码：</label>
+						<div class="input-group">
+							<div class="col-xs-2" style="padding-left:0px;padding-right:0px">
+								<input type="text" class="form-control"
+									value="CNSR3" readOnly="true" style="padding-left:0px;padding-right:0px;text-align:center"></input>
+							</div>
+							<label class="col-xs-1" >-</label>
+							<div class="col-xs-2" style="padding-left:0px;padding-right:0px">
+								<input type="text" class="form-control"
+									th:field="*{code1}"  style="padding-left:0px;padding-right:0px;text-align:center" ></input>
+							</div>
+							<label class="col-xs-1" >-</label>
+							<div class="col-xs-3" style="padding-left:0px;padding-right:0px">
+								<input type="text" class="form-control"
+									th:field="*{code2}" style="padding-left:0px;padding-right:0px;text-align:center"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group container">
+					<div class="row">
+						<label class="col-xs-3 control-label"  style="padding-right:0px">A5．身份证号：</label>
+						<div class="col-xs-8" style="padding-left:0px;padding-right:15px">
+							<input type="text" class="form-control" id="idcard"
+								placeholder="请输入身份证号码" th:field="*{idcard}"></input>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<center><button  type="submit" class=" btn btn-primary">提交</button></center>
+		</form>
+	</div>
+	<script th:src="@{js/jquery.min.js}" type="text/javascript"></script>
+	<script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+	<script th:inline="javascript">
+		function getName(name) {
+
+			console.log(name);
+
+		}
+	</script>
+</body>
+</html>

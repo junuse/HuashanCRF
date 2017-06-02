@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>  
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=5,user-scalable=yes" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>首页</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="index_tit">G. 入院初步诊断</div>
+			<div class="index_tit">G1.入院诊断</div>
+			<div class="index_select">
+				<span>蛛网膜下腔出血</span>
+				<div class="index_img"></div>
+			</div>
+			<div class="index_select">
+				<span>脑出血</span>
+				<div class="index_img"></div>
+			</div>
+			<div class="index_select">
+				<span>其他颅内出血</span>
+				<div class="index_img"></div>
+			</div>
+			<div class="index_btn">
+				<input type="submit" value="上一项" class="index_sub" />
+				<input type="reset" value="下一项" class="index_sub" />
+			</div>
+			
+			<div class="foot">
+				<p>复旦大学附属华山医院</p>
+				<p>脑出血CRF（SAH版）</p>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$('.main').on('click','.index_select',function (){
+			
+			$(this).find('.index_img').css({
+				'background-image': (new RegExp('input_radio1')).test($(this).find('.index_img').css('background')) ? "url(img/input_radio2.png)" : "url(img/input_radio1.png)"
+			})
+			
+		})
+	})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

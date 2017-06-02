@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,div,ul,ol,li,p,h3,h4,span,input,textarea,select,option,table,tr,td,h2,h1,dl,dt,dd,
+h5{padding:0;margin:0;box-sizing:border-box;-o-box-sizing:border-box;-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+body{font-family: "微软雅黑","microsoft yahei";width:100%;height:100%;margin:0 auto;min-width:3.2rem;max-width:7.5rem;color:#fff;-moz-text-size-adjust:none;-webkit-text-size-adjust:none;text-size-adjust:none;font-size: 14px;-webkit-overflow-scrolling: touch; /* ios5+ */}
+img{border:0 none;}
+html{font-size:100px;}
+ul,li{list-style-type:none;}
+input,textarea{outline:none;background:none;border:0 none;border-radius:0;}
+a{text-decoration:none;}
+input[type=”button”], input[type=”submit”], input[type=”reset”] {
+-webkit-appearance: none;
+}
+
+
+
+.main{width:100%;height:100%;min-width:3.2rem;max-width: 7.5rem;margin:0 auto;background:url(../img/bg.jpg) no-repeat;background-size:cover;}
+.return{position:fixed;top:0.3rem;right:0.3rem;z-index:9999;width:1.87rem;height:0.58rem;line-height:0.58rem;background:url(../img/return.png) no-repeat;font-size:0.3rem;color:#d0d0d0;text-align:center;background-size:contain;}
+.logo{text-align:center;padding:0.5rem 0 0.4rem 0;}
+.logo img{width:2.06rem;height:2.16rem;}
+.index_tit{text-align:center;font-size:0.48rem;color:#493720;font-weight:normal;margin-bottom:0.3rem;}
+.index_select{overflow:hidden;background:url(../img/index_kuang.png) no-repeat;background-size:cover;width:6.64rem;height:1.24rem;margin:0 auto 0.1rem;line-height:1.24rem;position:relative;}
+.index_select span{float:left;font-size:0.48rem;color:#493720;display:block;line-height:1.13rem;margin-left:0.6rem;}
+.index_img{width:0.58rem;height:0.57rem;background-image:url(../img/input_radio1.png);background-repeat:no-repeat;background-size:contain;position:absolute;right:0.5rem;top:0.3rem;z-index:2;}
+.index_btn{width:6.64rem;margin:0.2rem auto 0.35rem;overflow:hidden;}
+.index_sub{float:left;font-size:0.51rem;color:#f3f2f5;background:url(../img/index_sub.png) no-repeat;background-size:contain;width:3.28rem;height:0.99rem;letter-spacing:0.2rem;}
+.index_res{float:right;font-size:0.51rem;color:#493720;background:url(../img/index_res.png) no-repeat;background-size:contain;width:3.28rem;height:0.99rem;letter-spacing:0.2rem;}
+.foot{background:url(../img/foot.png) repeat-x; background-size:contain;height:1.22rem;padding-top:0.2rem;}
+.foot p{text-align:center;font-size:0.28rem;color:#d0c3b7;line-height:0.45rem;}
