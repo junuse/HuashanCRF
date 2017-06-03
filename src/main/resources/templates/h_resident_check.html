@@ -21,9 +21,9 @@
 			th:object="${doc}" method="post">
 
 			<fieldset>
-				<legend>
-					<label
-						th:text="*{name} + '[CNSR3-' + *{code1} + '-' + *{code2} + ']'"></label>
+				<legend class="row" th:object="${doc}" style="color:#337ab7">
+					<label class="col-xs-6" th:text="*{name}"></label>
+					<label class="col-xs-6" align="right" th:text="'CNSR3-' + *{code1} + '-' + *{code2}"></label>
 				</legend>
 				<div class="form-group container">
 					<label class="control-label">H1．是否完成首次血液标本采集（入组次日清晨空腹血）</label>

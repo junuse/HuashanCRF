@@ -11,30 +11,36 @@
 </head>
 <body>
 	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">欢迎进入华山医院CRF系统</h3>
+		<div class="panel-heading" th:object="${doc}">
+			<div class="row">
+				<h3 class="panel-title col-xs-6" th:text="*{name}"></h3>
+				<h3 class="panel-title col-xs-6" align="right"
+					th:text="'CNSR3-' + *{code1} + '-' + *{code2}"></h3>
+			</div>
 		</div>
-		<div class="panel-body" align="center">
-			<a href="a_basic.html"
-				th:href="@{/a_basic(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
-				<button class="btn-lg btn-primary">入院访视信息</button>
-			</a>
-		</div>
+
+		<fieldset>
+			<div class="panel-body" align="center">
+				<a href="a_basic.html"
+					th:href="@{/a_basic(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
+					<button class="btn-lg btn-primary">入院访视信息</button>
+				</a>
+			</div>
+			<div align="center" class="panel-body">
+				<a href="h_resident_check.html"
+					th:href="@{/h_resident_check(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
+					<button class="btn-lg btn-primary">出院访视信息</button>
+				</a>
+			</div>
+			<div align="center" class="panel-body">
+				<a href="a_basic.html"
+					th:href="@{/h_resident_check(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
+					<button class="btn-lg btn-primary">6个月访视信息</button>
+				</a>
+			</div>
+		</fieldset>
 		<div align="center" class="panel-body">
-			<a href="h_resident_check.html"
-				th:href="@{/h_resident_check(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
-				<button class="btn-lg btn-primary">出院访视信息</button>
-			</a>
-		</div>
-		<div align="center" class="panel-body">
-			<a href="a_basic.html"
-				th:href="@{/h_resident_check(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
-				<button class="btn-lg btn-primary">6个月访视信息</button>
-			</a>
-		</div>
-		<div align="center" class="panel-body">
-			<a href="portal_personal.html"
-				th:href="@{/portal}">
+			<a href="portal_personal.html" th:href="@{/portal}">
 				<button type="button" class=" btn btn-default">返回</button>
 			</a>
 		</div>
