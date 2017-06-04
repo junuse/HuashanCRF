@@ -11,7 +11,7 @@ public class ABasic {
     private ObjectId id;
 
     private String 	name;
-    private Boolean	ismale;
+    private Integer	sex;
     private Integer age;
     private String 	code1;
     private String  code2;
@@ -21,25 +21,17 @@ public class ABasic {
     }
     
 
-	public ABasic(String name, Boolean ismale, Integer age, String code1, String code2, String idcard) {
-		super();
-		this.name = name;
-		this.ismale = ismale;
-		this.age = age;
-		this.code1 = code1;
-		this.code2 = code2;
-		this.idcard = idcard;
+
+	public Integer getSex() {
+		return sex;
 	}
 
 
-	public Boolean getIsmale() {
-		return ismale;
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
 	}
 
-
-	public void setIsmale(Boolean ismale) {
-		this.ismale = ismale;
-	}
 
 
 	public ObjectId getId() {

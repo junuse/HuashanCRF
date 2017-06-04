@@ -1,6 +1,7 @@
 package org.huashan.crf;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import org.huashan.crf.dao.ABasicDAO;
@@ -28,6 +29,17 @@ public class MyController {
 	@Autowired
 	HResidentCheckDAO hResidentCheckDAO;
 	
+//	@RequestMapping("/")
+//    String index(Principal principal) {
+//        return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
+//    }
+//	@Controller
+//    public class SomeController {
+//        @RequestMapping("/")
+//        public String redirect() {
+//            return "redirect:/query?q=Thymeleaf+Is+Great!";
+//        }
+//    }
 	
 	@RequestMapping("/portal")
 	public String portal() {  

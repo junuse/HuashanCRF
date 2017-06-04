@@ -44,7 +44,7 @@
 		</tr>
 		<tr th:each="aBasic : ${aBasics}">
 			<td th:text="${aBasic.name}">姓名</td>
-			<td th:text="${aBasic.ismale}?'男':'女'">性别</td>
+			<td th:text="${aBasic.sex==1}?'男':'女'">性别</td>
 			<td th:text="'CNSR3-' + ${aBasic.code1} + '-' + ${aBasic.code2}">患者编码</td>
 			<td><a href="a_basic.html"
 				th:href="@{/portal_personal(name=${aBasic.name},code1=${aBasic.code1},code2=${aBasic.code2})}">查看</a></td>
@@ -56,7 +56,7 @@
 	var aBasics = [[${aBasics}]];
     if (aBasics != null){
     	if (aBasics.length == 0) alert("没有查询到该患者的信息");
-    	else alert("查询成功");
+//     	else alert("查询成功");
     	}
 	</script>
 </body>

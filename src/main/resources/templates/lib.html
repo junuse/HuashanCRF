@@ -1,0 +1,22 @@
+<div th:fragment="copy">&copy; 复旦大学附属华山医院 脑出血CRF（SAH版）</div>
+
+<div th:fragment="radio2(title,text1,text2,var_name)">
+	<div class="form-group container">
+		<div class="row">
+			<label class="col-xs-4 control-label" style="padding-right: 0px"
+				th:text="${title}">请选择：</label>
+			<div class="radio">
+				<label class="col-xs-2 control-label"> <input type="radio"
+					th:name="${title}" value="1" th:text="${text1}"
+					th:field="*{__${var_name}__}"> </input>
+				</label>
+			</div>
+			<div class="radio">
+				<label class="col-xs-2 control-label"> <input type="radio"
+					th:name="${title}" value="2" th:text="${text2}"
+					th:field="*{__${var_name}__}"> </input>
+				</label>
+			</div>
+		</div>
+	</div>
+</div>

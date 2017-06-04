@@ -20,9 +20,11 @@
 			th:object="${doc}" method="post">
 
 			<fieldset>
-				<legend class="row" th:object="${doc}" style="color:#337ab7">
-					<label class="col-xs-6" th:text="*{name}"></label>
-					<label class="col-xs-6" align="right" th:text="'CNSR3-' + *{code1} + '-' + *{code2}"></label>
+				<legend class="row" th:object="${doc}" style="color: #337ab7">
+					<label class="col-xs-6" th:text="*{name}"></label> <label
+						class="col-xs-6" align="right"
+						th:text="'CNSR3-' + *{code1} + '-' + *{code2}"
+						th:if="${doc.code1!=null}"></label>
 				</legend>
 				<div class="form-group container">
 					<div class="row">
@@ -35,23 +37,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group container">
-					<div class="row">
-						<label class="col-xs-4 control-label" style="padding-right: 0px">A2．性别</label>
-						<div class="radio">
-							<label class="col-xs-2 control-label"> <input
-								type="radio" name="ismale" id="optionsRadios1" value="true"
-								th:field="*{ismale}"> 男</input>
-							</label>
-						</div>
-						<div class="radio">
-							<label class="col-xs-2 control-label"> <input
-								type="radio" name="ismale" id="optionsRadios2" value="false"
-								th:field="*{ismale}"> 女</input>
-							</label>
-						</div>
-					</div>
-				</div>
+				<div th:include="lib :: radio2('A2．性别','男','女','sex')"></div>
 				<div class="form-group container">
 					<div class="row">
 						<label class="col-xs-4 control-label" style="padding-right: 0px">A4．患者编码：</label>
@@ -60,13 +46,15 @@
 						<div class="col-xs-2"
 							style="padding-left: 0px; padding-right: 0px">
 							<input type="text" class="form-control" th:field="*{code1}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center" required="required"></input>
+								style="padding-left: 0px; padding-right: 0px; text-align: center"
+								required="required"></input>
 						</div>
 						<label class="col-xs-1">-</label>
 						<div class="col-xs-2"
 							style="padding-left: 0px; padding-right: 0px">
 							<input type="text" class="form-control" th:field="*{code2}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center" required="required"></input>
+								style="padding-left: 0px; padding-right: 0px; text-align: center"
+								required="required"></input>
 						</div>
 					</div>
 				</div>
@@ -87,8 +75,8 @@
 					<button type="button" class=" btn btn-default">返回</button>
 				</a>
 				<button type="submit" class=" btn btn-primary">保存</button>
-				<a href="portal_personal.html"
-					th:href="@{/todo}" th:if="${doc.name != null}">
+				<a href="portal_personal.html" th:href="@{/todo}"
+					th:if="${doc.name != null}">
 					<button type="button" class=" btn btn-default">下一页</button>
 				</a>
 			</center>
