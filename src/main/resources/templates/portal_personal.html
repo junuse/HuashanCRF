@@ -7,11 +7,11 @@
 <link th:href="@{bootstrap/css/bootstrap-theme.min.css}"
 	rel="stylesheet" />
 <meta charset="UTF-8" />
-<title>Title</title>
+<div th:include="lib::pagetitle"></div>
 </head>
 <body>
 	<div class="panel panel-primary">
-		<div class="panel-heading" th:object="${doc}">
+		<div class="panel-heading" th:object="${cid}">
 			<div class="row">
 				<h3 class="panel-title col-xs-6" th:text="*{name}"></h3>
 				<h3 class="panel-title col-xs-6" align="right"
@@ -22,19 +22,19 @@
 		<fieldset>
 			<div class="panel-body" align="center">
 				<a href="a_basic.html"
-					th:href="@{/a_basic(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
+					th:href="@{/a_basic(name=${cid.name},code1=${cid.code1},code2=${cid.code2})}">
 					<button class="btn-lg btn-primary">入院访视信息</button>
 				</a>
 			</div>
 			<div align="center" class="panel-body">
 				<a href="h_resident_check.html"
-					th:href="@{/h_resident_check(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
+					th:href="@{/h_resident_check(name=${cid.name},code1=${cid.code1},code2=${cid.code2})}">
 					<button class="btn-lg btn-primary">出院访视信息</button>
 				</a>
 			</div>
 			<div align="center" class="panel-body">
 				<a href="a_basic.html"
-					th:href="@{/h_resident_check(name=${doc.name},code1=${doc.code1},code2=${doc.code2})}">
+					th:href="@{/h_resident_check(name=${cid.name},code1=${cid.code1},code2=${cid.code2})}">
 					<button class="btn-lg btn-primary">6个月访视信息</button>
 				</a>
 			</div>

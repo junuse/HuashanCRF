@@ -7,7 +7,7 @@
 <link th:href="@{bootstrap/css/bootstrap-theme.min.css}"
 	rel="stylesheet" />
 <meta charset="UTF-8" />
-<title>住院期间辅助检查</title>
+<div th:include="lib::pagetitle"></div>
 </head>
 <body>
 	<div class="panel panel-primary">
@@ -21,10 +21,7 @@
 			th:object="${doc}" method="post">
 
 			<fieldset>
-				<legend class="row" th:object="${doc}" style="color:#337ab7">
-					<label class="col-xs-6" th:text="*{name}"></label>
-					<label class="col-xs-6" align="right" th:text="'CNSR3-' + *{code1} + '-' + *{code2}"></label>
-				</legend>
+				<div th:include="lib :: legend"></div>
 				<div class="form-group container">
 					<label class="control-label">H1．是否完成首次血液标本采集（入组次日清晨空腹血）</label>
 

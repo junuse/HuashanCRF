@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.huashan.crf.dao.ABasicDAO;
 import org.huashan.crf.dao.HResidentCheckDAO;
 import org.huashan.crf.entity.ABasic;
+import org.huashan.crf.entity.Cid;
 import org.huashan.crf.entity.HResidentCheck;
 import org.huashan.crf.service.ABasicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,10 @@ public class MyController {
 	public String portal() {  
 		return "portal";  
 	}
-	@RequestMapping("/todo")
-	public String todo() {  
-		return "todo";  
-	}
+//	@RequestMapping("/todo")
+//	public String todo() {  
+//		return "todo";  
+//	}
 	@RequestMapping("/portal_personal")
 	public String portal_personal(
 			@RequestParam(value="name", required=false, defaultValue="") String name,
@@ -56,11 +57,11 @@ public class MyController {
 			@RequestParam(value="code2", required=false, defaultValue="") String code2,
 			Model model) {
 		if (!("".equals(name) || "".equals(code1) || "".equals(code2))){
-			ABasic doc = new ABasic();
-			doc.setName(name);
-			doc.setCode1(code1);
-			doc.setCode2(code2);
-			model.addAttribute("doc", doc);
+			Cid cid = new Cid();
+			cid.setName(name);
+			cid.setCode1(code1);
+			cid.setCode2(code2);
+			model.addAttribute("cid", cid);
 			return "portal_personal";  
 		} else {
 			return "portal";
@@ -69,7 +70,7 @@ public class MyController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@RequestParam(value="name", required=false, defaultValue="") String name, Model model) {
-		ABasic named = new ABasic();
+		Cid named = new Cid();
 		named.setName(name);
 		model.addAttribute("named", named);
 		if ("".equals(name)){

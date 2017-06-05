@@ -1,9 +1,33 @@
+<div th:fragment="pagetitle">
+	<title>华山医院CRF系统</title>
+</div>
 <div th:fragment="copy">&copy; 复旦大学附属华山医院 脑出血CRF（SAH版）</div>
+<div th:fragment="legend">
+	<legend class="row" style="color: #337ab7">
+		<label class="col-xs-6" th:text="*{name}" style="padding-left: 2em;"></label> <label
+			class="col-xs-6" align="right"
+			th:text="'CNSR3-' + *{code1} + '-' + *{code2}"
+			th:if="*{code1!=null}"></label>
+	</legend>
+</div>
+<div th:fragment="input1(quiz,placeholder,grids,var_name,required)">
+	<div class="form-group container">
+		<div class="row">
+			<label class="col-xs-3 control-label" for="name"
+				style="padding-right: 0px" th:text="${quiz}">输入项：</label>
+			<div th:class="${'col-xs-' + grids}" style="padding-left: 0px; padding-right: 0px">
+				<input type="text" class="form-control" id="name"
+					th:placeholder="${placeholder}" th:field="*{__${var_name}__}"
+					th:required="${required?'required':'false'}"></input>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div th:fragment="radio2(title,text1,text2,var_name)">
 	<div class="form-group container">
 		<div class="row">
-			<label class="col-xs-4 control-label" style="padding-right: 0px"
+			<label class="col-xs-3 control-label" style="padding-right: 0px"
 				th:text="${title}">请选择：</label>
 			<div class="radio">
 				<label class="col-xs-2 control-label"> <input type="radio"
