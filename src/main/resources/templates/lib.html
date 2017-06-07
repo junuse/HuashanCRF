@@ -4,43 +4,51 @@
 <div th:fragment="copy">&copy; 复旦大学附属华山医院 脑出血CRF（SAH版）</div>
 <div th:fragment="legend">
 	<legend class="row" style="color: #337ab7">
-		<label class="col-xs-6" th:text="*{name}" style="padding-left: 2em;"></label> <label
-			class="col-xs-6" align="right"
-			th:text="'CNSR3-' + *{code1} + '-' + *{code2}"
-			th:if="*{code1!=null}"></label>
+		<label class="col-xs-6" th:text="*{name}" style="padding-left: 2em;"></label>
+		<label class="col-xs-6" align="right"
+			th:text="'CNSR3-' + *{code1} + '-' + *{code2}" th:if="*{code1!=null}"></label>
 	</legend>
 </div>
-<div th:fragment="input1(quiz,placeholder,grids,var_name,required)">
-	<div class="form-group container">
-		<div class="row">
-			<label class="col-xs-3 control-label" for="name"
-				style="padding-right: 0px" th:text="${quiz}">输入项：</label>
-			<div th:class="${'col-xs-' + grids}" style="padding-left: 0px; padding-right: 0px">
-				<input type="text" class="form-control" id="name"
-					th:placeholder="${placeholder}" th:field="*{__${var_name}__}"
-					th:required="${required?'required':'false'}"></input>
-			</div>
+<div th:fragment="quiz(grids, text)">
+	<label th:class="${'col-xs-' + grids}" style="padding-right: 0px"
+		th:text="${text}">label</label>
+</div>
+<div th:fragment="label1(grids, text)">
+	<label th:class="${'col-xs-' + grids}"
+		style="padding-left: 0px; padding-right: 0px; text-align: center"
+		th:text="${text}">label</label>
+</div>
+<div th:fragment="input1(placeholder,grids,var_name,required)">
+	<div th:class="${'col-xs-' + grids}"
+		style="padding-left: 0px; padding-right: 0px">
+		<input type="text" class="form-control"
+			th:placeholder="${placeholder}" th:field="*{__${var_name}__}"
+			th:required="${required}"> </input>
+	</div>
+</div>
+<div th:fragment="input1_row(quiz,placeholder,grids,var_name,required)">
+	<div class="form-group container row">
+		<div th:include="lib :: quiz(3,${quiz})"></div>
+		<div
+			th:include="lib::input1(${placeholder},${grids},${var_name},${required})">
 		</div>
 	</div>
 </div>
 
-<div th:fragment="radio2(title,text1,text2,var_name)">
-	<div class="form-group container">
-		<div class="row">
-			<label class="col-xs-3 control-label" style="padding-right: 0px"
-				th:text="${title}">请选择：</label>
-			<div class="radio">
-				<label class="col-xs-2 control-label"> <input type="radio"
-					th:name="${title}" value="1" th:text="${text1}"
-					th:field="*{__${var_name}__}"> </input>
-				</label>
-			</div>
-			<div class="radio">
-				<label class="col-xs-2 control-label"> <input type="radio"
-					th:name="${title}" value="2" th:text="${text2}"
-					th:field="*{__${var_name}__}"> </input>
-				</label>
-			</div>
+<div th:fragment="radio2_row(quiz,option1,option2,var_name)">
+	<div class="form-group container row">
+		<div th:include="lib :: quiz(3,${quiz})"></div>
+		<div class="radio">
+			<label class="col-xs-2 control-label"> <input type="radio"
+				th:name="${quiz}" value="1" th:text="${option1}"
+				th:field="*{__${var_name}__}"> </input>
+			</label>
+		</div>
+		<div class="radio">
+			<label class="col-xs-2 control-label"> <input type="radio"
+				th:name="${quiz}" value="2" th:text="${option2}"
+				th:field="*{__${var_name}__}"> </input>
+			</label>
 		</div>
 	</div>
 </div>

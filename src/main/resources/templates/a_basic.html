@@ -21,82 +21,59 @@
 
 			<fieldset>
 				<div th:include="lib :: legend"></div>
-				<div th:include="lib :: input1('A1.姓名:','请输入姓名',4,'name',true)"></div>
-				<div th:include="lib :: radio2('A2.性别:','男','女','sex')"></div>
-				<div class="form-group container">
-					<div class="row">
-						<label class="col-xs-3 control-label" style="padding-right: 0px">A3.年龄:</label>
-						<div class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{age}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								></input>
-						</div>
-						<label class="col-xs-1">岁</label>
-					</div>
+				<div th:include="lib :: input1_row('A1.姓名:','请输入姓名',4,'name',true)"></div>
+				<div th:include="lib :: radio2_row('A2.性别:','男','女','sex')"></div>
+				<div class="form-group container row">
+					<div th:include="lib :: quiz(3,'A3.年龄:')"></div>
+					<div th:include="lib :: input1('',1,'age',false)"></div>
+					<div th:include="lib :: label1(1,'岁')"></div>
 				</div>
-				<div class="form-group container">
-					<div class="row">
-						<label class="col-xs-3 control-label" style="padding-right: 0px">A4.患者编码:</label>
-						<label class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px; text-align: center">CNSR3-</label>
-						<div class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{code1}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input>
-						</div>
-						<label class="col-xs-1">-</label>
-						<div class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{code2}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input>
-						</div>
-					</div>
+				<div class="form-group container row">
+					<div th:include="lib :: quiz(3,'A4.患者编码:')"></div>
+					<div th:include="lib :: label1(2,'CNSR3-')"></div>
+					<div th:include="lib :: input1('',2,'code1',true)"></div>
+					<div th:include="lib :: label1(1,'-')"></div>
+					<div th:include="lib :: input1('',2,'code2',true)"></div>
 				</div>
 				<div
-					th:include="lib :: input1('A5.身份证号:','请输入身份证号',7,'idcard',false)"></div>
+					th:include="lib :: input1_row('A5.身份证号:','请输入身份证号',7,'idcard',false)"></div>
 				<div
-					th:include="lib :: input1('A6.宅电1:','请输入宅电1',4,'telephone1',false)"></div>
+					th:include="lib :: input1_row('A6.宅电1:','请输入宅电1',4,'telephone1',false)"></div>
 				<div
-					th:include="lib :: input1('A7.宅电2:','请输入宅电2',4,'telephone2',false)"></div>
+					th:include="lib :: input1_row('A7.宅电2:','请输入宅电2',4,'telephone2',false)"></div>
 				<div
-					th:include="lib :: input1('A8.手机1:','请输入手机号码1',4,'cellphone1',false)"></div>
+					th:include="lib :: input1_row('A8.手机1:','请输入手机号码1',4,'cellphone1',false)"></div>
 				<div
-					th:include="lib :: input1('A9.手机2:','请输入手机号码2',4,'cellphone2',false)"></div>
+					th:include="lib :: input1_row('A9.手机2:','请输入手机号码2',4,'cellphone2',false)"></div>
 				<div
-					th:include="lib :: input1('A10.手机3:','请输入手机号码3',4,'cellphone3',false)"></div>
+					th:include="lib :: input1_row('A10.手机3:','请输入手机号码3',4,'cellphone3',false)"></div>
 
 				<div class="form-group container">
 					<div class="row">
 						<label class="col-xs-3 control-label" style="padding-right: 0px">A11.现住址:</label>
-						<div class="col-xs-1"
+						<div class="col-xs-2"
 							style="padding-left: 0px; padding-right: 0px">
 							<input type="text" class="form-control" th:field="*{province}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								></input>
+								style="padding-left: 0px; padding-right: 0px; text-align: center"></input>
 						</div>
 						<label class="col-xs-1">省</label>
-						<div class="col-xs-1"
+						<div class="col-xs-2"
 							style="padding-left: 0px; padding-right: 0px">
 							<input type="text" class="form-control" th:field="*{district}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								></input>
+								style="padding-left: 0px; padding-right: 0px; text-align: center"></input>
 						</div>
 						<label class="col-xs-1">市</label>
-						<div class="col-xs-1"
+						<div class="col-xs-2"
 							style="padding-left: 0px; padding-right: 0px">
 							<input type="text" class="form-control" th:field="*{city}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								></input> 
+								style="padding-left: 0px; padding-right: 0px; text-align: center"></input>
 						</div>
 						<label class="col-xs-1">区/县</label>
 					</div>
 				</div>
 
 				<div
-					th:include="lib :: input1('A12.住院号:','请输入11位数字',5,'admissionnum',false)"></div>
+					th:include="lib :: input1_row('A12.住院号:','请输入11位数字',5,'admissionnum',false)"></div>
 			</fieldset>
 			<center>
 				<a href="portal_personal.html"
