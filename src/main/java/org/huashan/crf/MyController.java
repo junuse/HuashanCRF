@@ -95,6 +95,10 @@ public class MyController {
 			doc = new ABasic();
 		}
 		model.addAttribute("doc", doc);
+		ArrayList<String> optionList = new ArrayList<String>();
+		optionList.add("aaa");
+		optionList.add("bbb");
+		model.addAttribute("optionList", optionList);
 		return "a_basic";
 	}
 	
@@ -148,13 +152,13 @@ public class MyController {
 	public String t(@RequestParam(value="name", required=false, defaultValue="jun") String name,  Model model) {  
 		//ArrayList<Person> persons = new ArrayList<Person>();
 		//
-		//		Person person=new Person();
-		//		person.setName("test");
+				Person person=new Person();
+				person.setName("test");
 		//		persons.add(person);
 		//		persons.add(person);
 		//		persons.add(person);
 		//		persons.add(person);
-		//		model.addAttribute("persons",persons);
+				model.addAttribute("person",person);
 		return "t";  
 	}  
 
