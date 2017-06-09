@@ -99,6 +99,9 @@ public class MyController {
 		optionList.add("aaa");
 		optionList.add("bbb");
 		model.addAttribute("optionList", optionList);
+		
+		Utility utility = new Utility();
+		model.addAttribute(utility);
 		return "a_basic";
 	}
 	

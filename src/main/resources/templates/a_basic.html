@@ -20,16 +20,11 @@
 			th:object="${doc}" method="post">
 
 			<fieldset>
-				<div
-					th:include="lib :: radio_row('选什么呢:','age',${ {'nnddddddddddddd', 'vv'} } ,1 )"></div>
-				<div
-					th:include="lib :: radio_row('选什么呢:','age',${ {'nnddddddddddddd', 'vvxxxxxx'} } ,3 )"></div>
-				<div
-					th:include="lib :: radio_row('选什么呢:','age',${ {'nndddddd', 'vvxxdfsfsddfxxxx', 'vvxxxxxx'} } ,3 )"></div>
-				<div
-					th:include="lib :: radio_row('选什么呢:','age',${ {'vvxxxxxxyyyyyyyyyyyyyy', 'vvxxdfsfsdx', 'vvxxxxxxyyyyyyyyyyyyyy'} } ,3 )"></div>
-					
 				<div th:include="lib :: legend"></div>
+				<div
+					th:include="lib :: radio_row('A0.选什么呢:','age',
+					${ {'很好很好阿很好sdfsdfsdf阿', '很好很好阿很好阿', '很好很sdfsdfsdf好阿很好阿', '很好很好阿很好阿', '很好很好阿很好阿', '很好很好阿很好阿', '很好阿'} } ,${utility} )"></div>
+					
 				<div th:include="lib :: input1_row('A1.姓名:','请输入姓名',4,'name',true)"></div>
 				<div th:include="lib :: radio2_row('A2.性别:','男','女','sex')"></div>
 				<div class="form-group container row">

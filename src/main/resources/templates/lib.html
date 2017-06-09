@@ -26,6 +26,17 @@
 			th:required="${required}"> </input>
 	</div>
 </div>
+<div th:fragment="radio1(quiz,text,grids,var_name,value)">
+	<div class="radio">
+		<label th:class="${'col-xs-' + grids}"> <input type="radio"
+			th:name="${quiz}" th:value="${value}" th:text="${text}"
+			th:field="*{__${var_name}__}"> </input>
+		</label>
+	</div>
+</div>
+<div th:fragment="blank1(grids)">
+	<p th:class="${'col-xs-' + grids}" > </p>
+</div>
 <div th:fragment="input1_row(quiz,placeholder,grids,var_name,required)">
 	<div class="form-group container row">
 		<div th:include="lib :: quiz(3,${quiz})"></div>
@@ -53,20 +64,89 @@
 	</div>
 </div>
 
-
-<div th:fragment="radio_row(quiz,var_name,optionList,startFrom)">
+<div th:fragment="radio_row(quiz,var_name,optionList,utility)">
 	<div class="form-group container row">
-		<div th:include="lib :: quiz(3,${quiz})" th:if="${startFrom}==1"></div>
-		<div th:each="option, optionStat:${optionList}">
-			<div
-				th:with="len=${#numbers.formatDecimal((#strings.length(option)+3)/5, 1, 0)}">
-				<div class="radio">
-					<label th:class="'col-xs-' + ${len}"> <input type="radio"
-						th:name="${quiz}" th:value="${optionStat.index + startFrom}"
-						th:text="${option}" th:field="*{__${var_name}__}"> </input>
-					</label>
+		<div th:include="lib :: quiz(3,${quiz})"></div>
+	</div>
+	<div th:with="arrays=${utility.grouping(optionList)}">
+		<div th:each="array, arrayStat:${arrays}">
+			<div class="form-group container row">
+			<div th:include="lib :: blank1(1)"></div>
+				<div th:each="option,optionStat:${array}">
+					<div
+						th:with="len=${#numbers.formatDecimal((#strings.length(option)+6)/3, 1, 0)}">
+						<div
+							th:include="lib :: radio1(${quiz},${option},${len},${var_name},${optionStat.index})"></div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<!-- <div th:fragment="radio_row(quiz,var_name,optionList,utility)"> -->
+<!-- 	<div th:include="lib :: quiz(3,${quiz})"></div> -->
+<!-- 	<div th:each="option, optionStat:${optionList}"> -->
+<!-- 		<div -->
+<!-- 			th:with="len=${#numbers.formatDecimal((#strings.length(option)+6)/3, 1, 0)}"> -->
+<!-- 			<div th:switch="${utility.checkInline(optionStat.index,len,12)}"> -->
+<!-- 				<div th:case="'skip'"></div> -->
+<!-- 				<div th:case="'true'"> -->
+<!-- 					<div -->
+<!-- 						th:include="lib :: radio1(${quiz},${option},${len},${var_name},${optionStat.index})"></div> -->
+<!-- 				</div> -->
+<!-- 				<div th:case="'false'"> -->
+<!-- 					<span th:text="${utility.setLen(len)}"></span> -->
+<!-- 					<div class="form-group container row"> -->
+<!-- 						<div th:each="option1, optionStat1:${optionList}"> -->
+<!-- 							<div -->
+<!-- 								th:with="len1=${#numbers.formatDecimal((#strings.length(option1)+6)/3, 1, 0)}"> -->
+<!-- 								<div -->
+<!-- 									th:switch="${utility.checkInline(optionStat1.index, len1, 12)}"> -->
+<!-- 									<div th:case="'true'"> -->
+<!-- 										<div -->
+<!-- 											th:include="lib :: radio1(${quiz},${option1},${len},${var_name},${optionStat1.index})"></div> -->
+<!-- 									</div> -->
+<!-- 									<div th:case="*"></div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+<!-- 		<div th:include="lib :: quiz(3,${quiz})" th:if="${cursor==0}"></div> -->
+<!-- 			<div -->
+<!-- 				th:with="len=${#numbers.formatDecimal((#strings.length(option)+6)/3, 1, 0)}"> -->
+<!-- 				<div th:if="${utility.sum(cursor,len) gt 1}"> -->
+<!-- 				<span th:text="${utility.setLen(len)}"></span> -->
+<!-- 				<span th:text="${utility.getSum()}"></span> -->
+<!-- 				<div class="form-group container row"></div> -->
+<!-- 				</div> -->
+<!-- 		<div th:include="lib :: radio1(${quiz},${option},${len},${var_name},${optionStat.index})"></div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+<!-- </div> -->
+
+
+<!-- <div th:fragment="radio_row(quiz,var_name,optionList,startFrom)"> -->
+<!-- 	<div class="form-group container row"> -->
+<!-- 		<div th:include="lib :: quiz(3,${quiz})" th:if="${startFrom}==1"></div> -->
+<!-- 		<div th:each="option, optionStat:${optionList}"> -->
+<!-- 			<div -->
+<!-- 				th:with="len=${#numbers.formatDecimal((#strings.length(option)+6)/3, 1, 0)}"> -->
+<!-- 				<div class="radio"> -->
+<!-- 					<label th:class="'col-xs-' + ${len}"> <input type="radio" -->
+<!-- 						th:name="${quiz}" th:value="${optionStat.index + startFrom}" -->
+<!-- 						th:text="${option}" th:field="*{__${var_name}__}"> </input> -->
+<!-- 					</label> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
