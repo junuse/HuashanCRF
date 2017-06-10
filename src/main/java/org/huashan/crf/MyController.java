@@ -55,10 +55,10 @@ public class MyController {
 		session.removeAttribute("code2");
 		return "portal";  
 	}
-//	@RequestMapping("/todo")
-//	public String todo() {  
-//		return "todo";  
-//	}
+	@RequestMapping("/todo")
+	public String todo() {  
+		return "todo";  
+	}
 	@RequestMapping("/portal_personal")
 	public String portal_personal(
 			@RequestParam(value="name", required=false, defaultValue="") String name,
@@ -183,7 +183,7 @@ public class MyController {
 			return "Duplicated code: CNSR3-" + doc.getCode1() + "-" + doc.getCode2();
 		}
 //		model.addAttribute("aBasic", doc);
-		return "todo";  
+		return "b_demographic";  
 	}
 	
 	@RequestMapping(value = "/h_resident_check", method = RequestMethod.GET)
