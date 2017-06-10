@@ -76,13 +76,17 @@
 					th:include="lib :: input1_row('A12.住院号:','请输入11位数字',5,'admissionnum',false)"></div>
 			</fieldset>
 			<center>
-				<a th:href="@{/portal_personal}">
-					<button type="button" class=" btn btn-default">返回</button>
-				</a>
-				<button type="submit" class="btn btn-primary">保存</button>
-				<a th:href="@{/b_demographic}">
-					<button type="button" class="btn btn-default" th:disabled="${session.name==null}">下一页</button>
-				</a>
+				<div class="form-group container row">
+					<button type="submit" class="btn btn-primary">保存</button>
+				</div>
+				<div class="form-group container row">
+					<a th:href="@{/portal_personal}">
+						<button type="button" class=" btn btn-default">返回</button>
+					</a>
+					<a th:href="@{/b_demographic}">
+						<button type="button" class="btn btn-default" th:disabled="${session.name==null}">下一页</button>
+					</a>
+				</div>
 			</center>
 		</form>
 	</div>
