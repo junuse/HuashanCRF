@@ -21,10 +21,6 @@
 
 			<fieldset>
 				<div th:include="lib :: legend"></div>
-				<div
-					th:include="lib :: radio_row('A0.选什么呢:','age',
-					${ {'很好很好阿很好sdfsdfsdf阿', '很好很好阿很好阿', '很好很sdfsdfsdf好阿很好阿', '很好很好阿很好阿', '很好很好阿很好阿', '很好很好阿很好阿', '很好阿'} } ,${utility} )"></div>
-					
 				<div th:include="lib :: input1_row('A1.姓名:','请输入姓名',4,'name',true)"></div>
 				<div th:include="lib :: radio2_row('A2.性别:','男','女','sex')"></div>
 				<div class="form-group container row">
@@ -80,14 +76,12 @@
 					th:include="lib :: input1_row('A12.住院号:','请输入11位数字',5,'admissionnum',false)"></div>
 			</fieldset>
 			<center>
-				<a href="portal_personal.html"
-					th:href="@{/portal_personal(name=*{name},code1=*{code1},code2=*{code2})}">
+				<a th:href="@{/portal_personal}">
 					<button type="button" class=" btn btn-default">返回</button>
 				</a>
 				<button type="submit" class="btn btn-primary">保存</button>
-				<a href="portal_personal.html" th:href="@{/todo}"
-					th:if="${doc.name != null}">
-					<button type="button" class=" btn btn-default">下一页</button>
+				<a th:href="@{/b_demographic}">
+					<button type="button" class="btn btn-default" th:disabled="${session.name==null}">下一页</button>
 				</a>
 			</center>
 		</form>

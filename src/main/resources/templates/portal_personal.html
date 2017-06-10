@@ -11,30 +11,30 @@
 </head>
 <body>
 	<div class="panel panel-primary">
-		<div class="panel-heading" th:object="${cid}">
+		<div class="panel-heading">
 			<div class="row">
-				<h3 class="panel-title col-xs-6" th:text="*{name}"></h3>
+				<h3 class="panel-title col-xs-6" th:text="${session.name}"></h3>
 				<h3 class="panel-title col-xs-6" align="right"
-					th:text="'CNSR3-' + *{code1} + '-' + *{code2}"></h3>
+					th:text="'CNSR3-' + ${session.code1} + '-' + ${session.code2}"></h3>
 			</div>
 		</div>
 
 		<fieldset>
 			<div class="panel-body" align="center">
 				<a href="a_basic.html"
-					th:href="@{/a_basic(name=${cid.name},code1=${cid.code1},code2=${cid.code2})}">
+					th:href="@{/a_basic}">
 					<button class="btn-lg btn-primary">入院访视信息</button>
 				</a>
 			</div>
 			<div align="center" class="panel-body">
 				<a href="h_resident_check.html"
-					th:href="@{/h_resident_check(name=${cid.name},code1=${cid.code1},code2=${cid.code2})}">
+					th:href="@{/h_resident_check}">
 					<button class="btn-lg btn-primary">出院访视信息</button>
 				</a>
 			</div>
 			<div align="center" class="panel-body">
 				<a href="a_basic.html"
-					th:href="@{/h_resident_check(name=${cid.name},code1=${cid.code1},code2=${cid.code2})}">
+					th:href="@{/h_resident_check}">
 					<button class="btn-lg btn-primary">6个月访视信息</button>
 				</a>
 			</div>

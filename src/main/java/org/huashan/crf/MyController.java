@@ -4,9 +4,13 @@ package org.huashan.crf;
 import java.security.Principal;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.huashan.crf.dao.ABasicDAO;
+import org.huashan.crf.dao.BDemographicDAO;
 import org.huashan.crf.dao.HResidentCheckDAO;
 import org.huashan.crf.entity.ABasic;
+import org.huashan.crf.entity.BDemographic;
 import org.huashan.crf.entity.Cid;
 import org.huashan.crf.entity.HResidentCheck;
 import org.huashan.crf.service.ABasicService;
@@ -27,6 +31,8 @@ public class MyController {
 
 	@Autowired
 	ABasicDAO aBasicDAO;
+    @Autowired
+    private BDemographicDAO bDemographicDAO;
 	@Autowired
 	HResidentCheckDAO hResidentCheckDAO;
 	
@@ -43,7 +49,10 @@ public class MyController {
 //    }
 	
 	@RequestMapping("/portal")
-	public String portal() {  
+	public String portal(HttpSession session) {
+		session.removeAttribute("name");
+		session.removeAttribute("code1");
+		session.removeAttribute("code2");
 		return "portal";  
 	}
 //	@RequestMapping("/todo")
@@ -55,13 +64,15 @@ public class MyController {
 			@RequestParam(value="name", required=false, defaultValue="") String name,
 			@RequestParam(value="code1", required=false, defaultValue="") String code1,
 			@RequestParam(value="code2", required=false, defaultValue="") String code2,
-			Model model) {
-		if (!("".equals(name) || "".equals(code1) || "".equals(code2))){
-			Cid cid = new Cid();
-			cid.setName(name);
-			cid.setCode1(code1);
-			cid.setCode2(code2);
-			model.addAttribute("cid", cid);
+			Model model, HttpSession session) {
+		Cid cid = getCid(session);
+		if (cid == null) {
+			if (!"".equals(name) && !"".equals(code1) && !"".equals(code2)) {
+				cid = new Cid(name, code1, code2);
+				setCid(session, cid);
+			}
+		}
+		if (cid != null){
 			return "portal_personal";  
 		} else {
 			return "portal";
@@ -70,8 +81,7 @@ public class MyController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@RequestParam(value="name", required=false, defaultValue="") String name, Model model) {
-		Cid named = new Cid();
-		named.setName(name);
+		Cid named = new Cid(name, "", "");
 		model.addAttribute("named", named);
 		if ("".equals(name)){
 			return "search";
@@ -83,32 +93,90 @@ public class MyController {
 	
 	@RequestMapping(value = "/a_basic", method = RequestMethod.GET)
 	public String a_basic(
-			@RequestParam(value="name", required=false, defaultValue="") String name,
-			@RequestParam(value="code1", required=false, defaultValue="") String code1,
-			@RequestParam(value="code2", required=false, defaultValue="") String code2,
-			Model model) {
+//			@RequestParam(value="name", required=false, defaultValue="") String name,
+//			@RequestParam(value="code1", required=false, defaultValue="") String code1,
+//			@RequestParam(value="code2", required=false, defaultValue="") String code2,
+			Model model, HttpSession session) {
 		ABasic doc = null;
-		if (!("".equals(name) || "".equals(code1) || "".equals(code2))){
-			doc = aBasicDAO.findOneByNameAndCode1AndCode2(name, code1, code2);
+		Cid cid = getCid(session);
+		if (cid != null){
+//			setCid(session, new Cid(name, code1, code2));
+			doc = aBasicDAO.findOneByNameAndCode1AndCode2(cid.getName(), cid.getCode1(), cid.getCode2());
 		}
 		if (doc == null){
 			doc = new ABasic();
 		}
 		model.addAttribute("doc", doc);
-		ArrayList<String> optionList = new ArrayList<String>();
-		optionList.add("aaa");
-		optionList.add("bbb");
-		model.addAttribute("optionList", optionList);
+//		ArrayList<String> optionList = new ArrayList<String>();
+//		optionList.add("aaa");
+//		optionList.add("bbb");
+//		model.addAttribute("optionList", optionList);
 		
 		Utility utility = new Utility();
 		model.addAttribute(utility);
+		
 		return "a_basic";
 	}
 	
 	@RequestMapping(value = "/a_basic", method = RequestMethod.POST)
-	public String a_basic_post(@ModelAttribute(value="doc") ABasic doc, Model model) {
+	public String a_basic_post(@ModelAttribute(value="doc") ABasic doc, Model model, HttpSession session) {
 		try {
 			aBasicService.saveA(doc);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO Add error page
+			return "Duplicated code: CNSR3-" + doc.getCode1() + "-" + doc.getCode2();
+		}
+		setCid(session, new Cid(doc.getName(), doc.getCode1(), doc.getCode2()));
+//		session.setAttribute("name", doc.getName());
+//		session.setAttribute("code1", doc.getCode1());
+//		session.setAttribute("code2", doc.getCode2());
+		return "a_basic";  
+	}
+
+	public Cid getCid(HttpSession session) {
+		try {
+			return new Cid(session.getAttribute("name").toString(),
+					session.getAttribute("code1").toString(),
+					session.getAttribute("code2").toString());
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public void setCid(HttpSession session, Cid cid) {
+		session.setAttribute("name", cid.getName());
+		session.setAttribute("code1", cid.getCode1());
+		session.setAttribute("code2", cid.getCode2());
+	}
+	
+	@RequestMapping(value = "/b_demographic", method = RequestMethod.GET)
+	public String b_demographic(
+//			@RequestParam(value="name", required=false, defaultValue="") String name,
+//			@RequestParam(value="code1", required=false, defaultValue="") String code1,
+//			@RequestParam(value="code2", required=false, defaultValue="") String code2,
+			Model model, HttpSession session) {
+		BDemographic doc = null;
+		Cid cid = getCid(session);
+		if (cid != null) {
+			doc = bDemographicDAO.findOneByNameAndCode1AndCode2(cid.getName(), cid.getCode1(), cid.getCode2());
+		}
+		if (doc == null){
+			doc = new BDemographic();
+			doc.fillCid(cid);
+		}
+		model.addAttribute("doc", doc);
+		
+		Utility utility = new Utility();
+		model.addAttribute(utility);
+		return "b_demographic";
+	}
+
+	@RequestMapping(value = "/b_demographic", method = RequestMethod.POST)
+	public String b_demographic_post(@ModelAttribute(value="doc") BDemographic doc, Model model, HttpSession session) {
+		try {
+			doc.fillCid(getCid(session));
+			aBasicService.saveB(doc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Add error page
@@ -117,8 +185,7 @@ public class MyController {
 //		model.addAttribute("aBasic", doc);
 		return "todo";  
 	}
-
-
+	
 	@RequestMapping(value = "/h_resident_check", method = RequestMethod.GET)
 	public String h_resident_check(
 			@RequestParam(value="name", required=false, defaultValue="") String name,

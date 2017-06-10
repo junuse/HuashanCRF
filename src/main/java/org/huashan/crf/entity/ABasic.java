@@ -30,6 +30,11 @@ public class ABasic {
     }
     
 
+    public void fillCid(Cid cid) {
+    	setName(cid.getName());
+    	setCode1(cid.getCode1());
+    	setCode2(cid.getCode2());
+    }
 
 	public String getTelephone1() {
 		return telephone1;

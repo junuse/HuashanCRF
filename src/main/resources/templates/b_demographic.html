@@ -15,98 +15,44 @@
 			<h3 class="panel-title">B．人口学特征</h3>
 		</div>
 
-		<form role="form" action="#" th:action="@{/a_basic}"
+		<form role="form" action="#" th:action="@{/b_demographic}"
 			th:object="${doc}" method="post">
 
 			<fieldset>
 				<div th:include="lib :: legend"></div>
-				<div th:include="lib :: input1('A1.姓名:','请输入姓名',4,'name',true)"></div>
-				<div th:include="lib :: radio2('A2.性别:','男','女','sex')"></div>
-				<div class="form-group container">
-					<div class="row">
-						<label class="col-xs-3 control-label" style="padding-right: 0px">A3.年龄:</label>
-						<div class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{age}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input>
-						</div>
-						<label class="col-xs-1">岁</label>
-					</div>
-				</div>
-				<div class="form-group container">
-					<div class="row">
-						<label class="col-xs-3 control-label" style="padding-right: 0px">A4.患者编码:</label>
-						<label class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px; text-align: center">CNSR3-</label>
-						<div class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{code1}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input>
-						</div>
-						<label class="col-xs-1">-</label>
-						<div class="col-xs-2"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{code2}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input>
-						</div>
-					</div>
-				</div>
 				<div
-					th:include="lib :: input1('A5.身份证号:','请输入身份证号',7,'idcard',false)"></div>
+					th:include="lib :: radio_suite('B1.民族:','nation',${ {'1-汉族','99-其他'} } , ${utility} )"></div>
 				<div
-					th:include="lib :: input1('A6.宅电1:','请输入宅电1',4,'telephone1',false)"></div>
+					th:include="lib :: radio_suite('B2.婚姻状况:','marital',
+					${ {'1-未婚', '2-已婚', '3-离异', '4-丧偶', '5-再婚', '98-不详'} } , ${utility} )"></div>
+				<div th:include="lib :: quiz_row(10,'B3.发病前居住状况:')"></div>
 				<div
-					th:include="lib :: input1('A7.宅电2:','请输入宅电2',4,'telephone2',false)"></div>
+					th:include="lib :: radio_answers('B3.发病前居住状况:','dwelling',${{'1-单独居住'}}, 1, ${utility})"></div>
 				<div
-					th:include="lib :: input1('A8.手机1:','请输入手机号码1',4,'cellphone1',false)"></div>
+					th:include="lib :: radio_answers('B3.发病前居住状况:','dwelling',${{'2-与他人同住  如果与他人同住，则同住者为:'}}, 2, ${utility})"></div>
 				<div
-					th:include="lib :: input1('A9.手机2:','请输入手机号码2',4,'cellphone2',false)"></div>
+					th:include="lib :: checkbox_answers('2-与他人同住',
+						${ {'dwell_children','dwell_mate','dwell_parent','dwell_relative','dwell_nurse','dwell_other'} },
+						${ {'1-子女','2-配偶','3-父母','4-亲戚','5-保姆等看护者','99-其他'} },2,${utility})"></div>
 				<div
-					th:include="lib :: input1('A10.手机3:','请输入手机号码3',4,'cellphone3',false)"></div>
-
-				<div class="form-group container">
-					<div class="row">
-						<label class="col-xs-3 control-label" style="padding-right: 0px">A11.现住址:</label>
-						<div class="col-xs-1"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{province}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input>
-						</div>
-						<label class="col-xs-1">省</label>
-						<div class="col-xs-1"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{district}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input>
-						</div>
-						<label class="col-xs-1">市</label>
-						<div class="col-xs-1"
-							style="padding-left: 0px; padding-right: 0px">
-							<input type="text" class="form-control" th:field="*{city}"
-								style="padding-left: 0px; padding-right: 0px; text-align: center"
-								required="required"></input> 
-						</div>
-						<label class="col-xs-1">区/县</label>
-					</div>
-				</div>
-
-				<div
-					th:include="lib :: input1('A12.住院号:','请输入11位数字',5,'admissionnum',false)"></div>
+					th:include="lib :: radio_suite('B4.文化程度:','edu',
+					${ {'1-大学本、专科或以上', '2-高中（包括中专）', '3-初中', '4-小学', '5-文盲', '98-不详'} },${utility} )"></div>
 			</fieldset>
 			<center>
-				<a href="portal_personal.html"
-					th:href="@{/portal_personal(name=*{name},code1=*{code1},code2=*{code2})}">
-					<button type="button" class=" btn btn-default">返回</button>
-				</a>
-				<button type="submit" class="btn btn-primary">保存</button>
-				<a href="portal_personal.html" th:href="@{/todo}"
-					th:if="${doc.name != null}">
-					<button type="button" class=" btn btn-default">下一页</button>
-				</a>
+				<div class="form-group container row">
+					<button type="submit" class="btn btn-primary">保存</button>
+				</div>
+				<div class="form-group container row">
+					<a th:href="@{/a_basic}">
+						<button type="button" class="btn btn-default">上一页</button>
+					</a>
+					<a th:href="@{/portal_personal}">
+						<button type="button" class=" btn btn-default">返回</button>
+					</a>
+					<a th:href="@{/todo}">
+						<button type="button" class="btn btn-default">下一页</button>
+					</a>
+				</div>
 			</center>
 		</form>
 	</div>

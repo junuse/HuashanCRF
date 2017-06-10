@@ -6,6 +6,12 @@ public class Cid { //combined id
     private String 	code1;
     private String  code2;
     
+	public Cid(String name, String code1, String code2) {
+		super();
+		this.name = name;
+		this.code1 = code1;
+		this.code2 = code2;
+	}
 	public String getName() {
 		return name;
 	}

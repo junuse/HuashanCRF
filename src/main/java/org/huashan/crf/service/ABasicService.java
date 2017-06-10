@@ -3,6 +3,7 @@ package org.huashan.crf.service;
 import java.util.List;
 
 import org.huashan.crf.entity.ABasic;
+import org.huashan.crf.entity.BDemographic;
 import org.huashan.crf.entity.HResidentCheck;
 
 public interface ABasicService {
@@ -13,4 +14,6 @@ public interface ABasicService {
 	
 //	public HResidentCheck findHByCode1AndCode2(String code1, String code2);
 	public HResidentCheck saveH(HResidentCheck doc) throws Exception;
+
+	BDemographic saveB(BDemographic doc) throws Exception;
 }
