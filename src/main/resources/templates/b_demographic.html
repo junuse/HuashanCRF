@@ -21,10 +21,14 @@
 			<fieldset>
 				<div th:include="lib :: legend"></div>
 				<div
-					th:include="lib :: radio_suite('B1.民族:','nation',${ {'1-汉族','99-其他'} } , ${utility} )"></div>
+					th:include="lib :: radio_suite('B1.民族:','nation',
+					${ {'1-汉族','99-其他'} } , ${utility} )">
+				</div>
 				<div
 					th:include="lib :: radio_suite('B2.婚姻状况:','marital',
-					${ {'1-未婚', '2-已婚', '3-离异', '4-丧偶', '5-再婚', '98-不详'} } , ${utility} )"></div>
+					${ {'1-未婚', '2-已婚', '3-离异', '4-丧偶', '5-再婚', '98-不详'} },
+					${utility} )">
+				</div>
 				<div th:include="lib :: quiz_row(10,'B3.发病前居住状况:')"></div>
 				<div
 					th:include="lib :: radio_answers('B3.发病前居住状况:','dwelling',${{'1-单独居住'}}, 1, ${utility})"></div>

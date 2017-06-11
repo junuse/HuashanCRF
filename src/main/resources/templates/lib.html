@@ -77,7 +77,7 @@
 	</div>
 </div>
 <div th:fragment="radio_answers(quiz,var_name,optionList,startFrom,utility)">
-	<div th:with="arrays=${utility.grouping(optionList)}">
+	<div th:with="arrays=${utility.grouping(optionList)},cursor=${utility.setCursor(0)}">
 		<div th:each="array, arrayStat:${arrays}">
 			<div class="form-group container row">
 			<div th:include="lib :: blank1(1)"></div>
@@ -85,7 +85,7 @@
 				<div
 					th:with="len=${#numbers.formatDecimal((#strings.length(option)+6)/3, 1, 0)}">
 					<div
-						th:include="lib :: radio1(${quiz},${option},${len},${var_name},${optionStat.index+startFrom})"></div>
+						th:include="lib :: radio1(${quiz},${option},${len},${var_name},${utility.step()+startFrom})"></div>
 				</div>
 			</div>
 			</div>

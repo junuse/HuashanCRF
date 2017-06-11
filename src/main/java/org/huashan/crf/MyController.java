@@ -182,7 +182,10 @@ public class MyController {
 			// TODO Add error page
 			return "Duplicated code: CNSR3-" + doc.getCode1() + "-" + doc.getCode2();
 		}
-//		model.addAttribute("aBasic", doc);
+		model.addAttribute("doc", doc);
+		
+		Utility utility = new Utility();
+		model.addAttribute(utility);
 		return "b_demographic";  
 	}
 	
