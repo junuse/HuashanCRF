@@ -107,6 +107,12 @@ public class HResidentCheck {
 	public void setBloodclock(String bloodclock) {
 		this.bloodclock = bloodclock;
 	}
+
+    public void fillCid(Cid cid) {
+    	setName(cid.getName());
+    	setCode1(cid.getCode1());
+    	setCode2(cid.getCode2());
+    }
     
 
 

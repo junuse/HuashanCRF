@@ -70,11 +70,17 @@
 				</div>
 			</fieldset>
 			<center>
-				<button type="submit" class=" btn btn-primary">保存</button>
-				<a href="portal_personal.html"
-					th:href="@{/portal_personal(name=*{name},code1=*{code1},code2=*{code2})}">
-					<button type="button" class=" btn btn-default">返回</button>
-				</a>
+				<div class="form-group container row">
+					<button type="submit" class="btn btn-primary">保存</button>
+				</div>
+				<div class="form-group container row">
+					<a th:href="@{/portal_personal}">
+						<button type="button" class=" btn btn-default">返回</button>
+					</a>
+					<a th:href="@{/todo}">
+						<button type="button" class="btn btn-default">下一页</button>
+					</a>
+				</div>
 			</center>
 		</form>
 	</div>

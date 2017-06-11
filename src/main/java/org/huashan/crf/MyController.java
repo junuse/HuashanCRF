@@ -190,35 +190,36 @@ public class MyController {
 	}
 	
 	@RequestMapping(value = "/h_resident_check", method = RequestMethod.GET)
-	public String h_resident_check(
-			@RequestParam(value="name", required=false, defaultValue="") String name,
-			@RequestParam(value="code1", required=false, defaultValue="") String code1,
-			@RequestParam(value="code2", required=false, defaultValue="") String code2,
-			Model model) {
+	public String h_resident_check(Model model, HttpSession session) {
 		HResidentCheck doc = null;
-		if (!("".equals(name) || "".equals(code1) || "".equals(code2))){
-			doc = hResidentCheckDAO.findOneByNameAndCode1AndCode2(name, code1, code2);
+		Cid cid = getCid(session);
+		if (cid != null) {
+			doc = hResidentCheckDAO.findOneByNameAndCode1AndCode2(cid.getName(), cid.getCode1(), cid.getCode2());
 		}
 		if (doc == null){
 			doc = new HResidentCheck();
-			doc.setName(name);
-			doc.setCode1(code1);
-			doc.setCode2(code2);
+			doc.fillCid(cid);
 		}
 		model.addAttribute("doc", doc);
+		Utility utility = new Utility();
+		model.addAttribute(utility);
 		return "h_resident_check";
 	}
 	@RequestMapping(value = "/h_resident_check", method = RequestMethod.POST)
-	public String h_resident_check_post(@ModelAttribute(value="doc") HResidentCheck doc, Model model) {
+	public String h_resident_check_post(@ModelAttribute(value="doc") HResidentCheck doc, Model model, HttpSession session) {
 		try {
+			doc.fillCid(getCid(session));
 			aBasicService.saveH(doc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Add error page
 			return "Duplicated code: CNSR3-" + doc.getCode1() + "-" + doc.getCode2();
 		}
-//		model.addAttribute("aBasic", doc);
-		return "success";  
+		model.addAttribute("doc", doc);
+		
+		Utility utility = new Utility();
+		model.addAttribute(utility);
+		return "h_resident_check";  
 	}
 
 	@RequestMapping("/t")
